@@ -1,8 +1,5 @@
 # Modul122
-# In Zusammenhang mit Dateien und Verzeichnissen
-- Als Parameter übergebene Dateien und Verzeichnisse suchen, überprüfen und löschen 
-(Bash: Lernaufgabe - Datei und Verzeichnis loeschen.pdf)
-- Verzeichnisse traversieren, anzeigen und in eine Datei speichern
-(Bash: Exercise - Directory Traversal.pdf)
-- Verzeichnisse vergleichen und die Unterschiede anzeigen (PS: CompareFileLists)
+# Backup
 
+Beschreibung:
+Ein Backupscript ausgeführt von einem Cron Job(inkrementelles Backup von dem Homeverzeichnis). Manuell kann das Skript mit dem Flag -full "PATH" ein full Backup in den angegebenen Pfad machen oder mit dem Parameter -origin "PATH" ein beliebiges Verzeichnis gesichter werden.
