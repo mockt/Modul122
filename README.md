@@ -1,31 +1,38 @@
 # Modul122
 ## Backup
 
-**Beschreibung:**
-Ein Backupscript ausgeführt von einem Cron Job(inkrementelles Backup von dem Homeverzeichnis). Manuell kann das Skript mit dem Flag -f ein full Backup in den angegebenen Pfad machen oder mit dem Parameter -p "Ordnername" in ein neuer Ordner gesichter werden.
+### Beschreibung:
+Ein Backupscript ausgeführt von einem Cron Job (inkrementelles Backup von dem Homeverzeichnis: Nur die innerhalb der letzen 24h veränderten Daten werden gesichert). Manuell kann das Skript mit dem Flag -f ein ganzes Backup in den im Script hinterlegten Pfad machen. Mit dem Parameter -p "Ordnername" kann das Backup in einen neuen Ordner gesichert werden.
 
 
-**Anforderungen**
-- Ein Backup in einen Ordner
+### Anforderungen
+- Ein (voll oder inkrementell) Backup in einen Ordner
 - Speichert als .tgz File
 - Der Dateiname hat das Datum und Uhrzeit der Speicherung
 - Crone-Job integriert
+- Zielordner kann angegeben werden
 
 
-**UML Diagramm**
+### UML Diagramme
+#### Anwendungsfall
 ![Leeres Diagramm](https://user-images.githubusercontent.com/71868170/177398862-934c843b-5e81-42b5-94e7-20a37e83ed43.png)
 
+#### Flussdiagramm
+![XP6_RY8n4CPxFyKdLtSdKPn0b7SeIXIXD950AK0fHkmiCNW7Q-mDKPwDZXUBlGi94KKgDz-VttoUn4IQsiQRNtz-Op3u1rV31ZqUQaPzF2W60O-ar71YjKWlBCQWA9Sr-SZFiBD4Kf5MM3ZseQOAhwnxbeh55krLOdsL202vUvcqBObJsIetB8czvuWRMctRO44HDCnQphszfNZE64-xA_](https://user-images.githubusercontent.com/71868170/177403545-f9b249db-9ef5-4c14-9938-71aaf8b5f6cc.png)
 
-**Tests**
+
+### Tests
 | Testname  | Beschreibung | Ergebnis
 | ------------- | ------------- | ------------- | 
 | Backup  | Wird ein Backup erstellt?  | Ja |
+| Full/Inkrementell Backup  | Wird ein ganzes oder inkrementelles Backup erstellt? | Ja |
 | Backup als .tgz File  | Wird ein ein .tgz File erstellt?  | Ja |
 | Dateiname  | Wird das Datum und die Uhrzeit im Dateinamen angezeigt?  | Ja |
-| Crone-Job  | Funktioniert der Crone-Job | Ja |
+| Crone-Job  | Funktioniert der Crone-Job? | Ja |
+| Zielordner  | Wird ein neuer Ordner erstellt? | Ja |
 
 
-**Vorgehen**
+### Vorgehen
 Erstellen des Skripts mit der Logik zum erstellen der Backups (backup.sh). Mach das Skript ausführbar
 
 ```
@@ -40,7 +47,7 @@ sudo crontab -e
 (Minuten Stunden TagDesMonats Monat TagDerWoche Skript)
 
 ```
-30 16 * * * bash /Github/Modul122/backup.sh
+30 16 * * * bash /backup.sh
 
 ```
 (sudo service cron status) um den Status zu sehen
