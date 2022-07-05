@@ -44,10 +44,10 @@ Erstellen des Cronjobs.
 ```
 sudo crontab -e
 ```
-(Minuten Stunden TagDesMonats Monat TagDerWoche Skript)
+(Minuten, Stunden, jeden Tag, jeder Monat , jeden Tag in der Woche / Skript)
 
 ```
-30 16 * * * bash /backup.sh
+59 23 * * * bash /backup.sh
 
 ```
 (sudo service cron status) um den Status zu sehen
