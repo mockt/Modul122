@@ -4,16 +4,18 @@
 # Autor: Tabea Mock
 
 # Von was sollen Backups erstellt werden.
-backup_files=~/Desktop/BBW/Modul_122/Abschlussarbeit
+backupFolder=~/Github/Modul122
 
 # Wo sollen die Backups gespeichert werden.
-dest=~/Desktop/BBW/Modul_122/Abschlussarbeit/Backup
+destFolder=~/Desktop/BBW/Modul_122/Abschlussarbeit/Backup
 
-while getopts ":a:p:" opt; do
+fullBackup=false
+
+while getopts ":p:f" opt; do
   case $opt in
-    a) arg_1="$OPTARG"
+    p) destFolder="$OPTARG"
     ;;
-    p) p_out="$OPTARG"
+    f) fullBackup=true
     ;;
     \?) echo "Invalid option -$OPTARG" >&2
     exit 1
@@ -27,22 +29,25 @@ while getopts ":a:p:" opt; do
   esac
 done
 
-printf "Argument p_out is %s\n" "$p_out"
-printf "Argument arg_1 is %s\n" "$arg_1"
-
-
 # File nach Datum und Zeit benennen
 date=$(date +%F)
 time=$(date +%T)
 archive_file="$date-$time.tgz"
 
-# Status ausgeben
-echo "Es wird ein Backup von $backup_files zu $dest/$archive_file erstellt"
-date
-echo
+# Ordner erstellen falls notwendig
+mkdir -p "$destFolder"
 
 # Backup erstellen
-tar czf $dest/$archive_file $backup_files
+if $fullBackup
+then
+  # Full
+  echo "Es wird ein komplettes Backup von $backupFolder zu $destFolder/$archive_file erstellt"
+  tar czf $destFolder/$archive_file $backupFolder
+else
+  # Incremental
+  echo "Es wird ein inkrementelles Backup von $backupFolder zu $destFolder/$archive_file erstellt"
+  find $backupFolder -mtime -1 -exec tar czf $destFolder/$archive_file $backupFolder {} +
+fi
 
 # Status ausgeben
 echo
@@ -50,6 +55,7 @@ echo "Backup abgeschlossen"
 date
 
 # Alle Backups anzeigen
-ls -lh $dest
+ls -lh $destFolder
 
-$SHELL
+# Das Program bleibt 10sek geöffnet
+sleep 10
