@@ -4,8 +4,8 @@
 ### Beschreibung:
 Ein Backupscript ausgeführt von einem Cron Job (inkrementelles Backup von dem Homeverzeichnis: Nur die innerhalb der letzen 24h veränderten Daten werden gesichert). Manuell kann das Skript mit dem Flag -f ein ganzes Backup in den im Script hinterlegten Pfad machen. Mit dem Parameter -p "Ordnername" kann das Backup in einen neuen Ordner gesichert werden.
 
-Parameter: 
-- -f : full Backup
+#### Parameter: 
+- -f : full backup
 - -p : targetpath
 
 ### Anforderungen
